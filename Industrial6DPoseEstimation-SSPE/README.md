@@ -21,13 +21,13 @@ Step 4: Build and run docker as below
 Step 5: Run `python3 blender_train.py mixed_pepper.data yolo-pose.cfg backup/init.weights`
 
 
-### Testing model by a single image
+### Testing model with a single image
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_image"`
 
 Example: `python draw_image.py --p model.weights --i input_image.png`
 
-### Testing model by a video
+### Testing model with a video
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_video"`
 
