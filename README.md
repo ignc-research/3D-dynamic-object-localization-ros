@@ -12,7 +12,7 @@ The Drive folder contains:
 * \MMDetection
   * \models:
   * \training_data:
-* \original_videos: Contains the videos of the robots that were used 3D model generation.
+* \original_videos: Contains the videos of the robots that were used for 3D model generation.
 * \SSPE
   * \training_data:
   * \models: 
