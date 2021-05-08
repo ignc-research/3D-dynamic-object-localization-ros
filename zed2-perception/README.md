@@ -45,7 +45,8 @@ $ source ./devel/setup.bash
 This project used a YOLO implementation from https://github.com/leggedrobotics/darknet_ros. You can either use the version already included in this directory (darknet_ros) or clone the repo from git. Both methods are described in the next two sections.
 ### Use our Implementation
 * This project includes the following darknet_ros implementation: https://github.com/leggedrobotics/darknet_ros
-* The repo was already cloned and is located in the \src folder
+* The repo was already cloned and is located in the \darknet_ros folder
+* Follow the instructions in the main repository to copy the weight from Google drive to */zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/*
 * There are some potential problems with OpenCV, Jetson and YOLO. Most of them are discussed here: https://github.com/leggedrobotics/darknet_ros/issues
   * In this project OpenCV 3.4.8 was used. You can download it here: https://opencv.org/releases/page/2/
     * This does not mean that other versions don't work. However, there may different issues to resolve
