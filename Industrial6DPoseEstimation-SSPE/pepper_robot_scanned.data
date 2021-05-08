@@ -1,0 +1,6 @@
+train  = pepper_robot_scanned_pepper_train.txt
+valid  = pepper_robot_scanned_pepper_test.txt
+backup = backup
+mesh = pepper_robot_commercial.ply
+diam = 0.6
+name = pepper_scanned
