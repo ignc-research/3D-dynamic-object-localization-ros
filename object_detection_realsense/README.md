@@ -164,7 +164,7 @@ python ./mmdetection/tools/test.py ./mmdetection/configs/yolo/yolov3_d53_mstrain
 
 
 # ros-perception
-The ros-perception tool is designed to embed the detection models outputted by the MMDetection framework within a ROS node and therefore provide the detection systems results through ROS messages.
+The ros-perception tool is designed to embed the detection models outputted by the MMDetection framework within a ROS node and therefore provide the detection systems results through ROS messages. If one of the pretrained models from this project should be utilized instead of training a new model locally these can be downloaded from the shared google drive folder linked in the general readme of this project. The downloaded .pth and the config python file can then be used instead of running the whole training process beforehand.
 
 
 ## Installation requirements
