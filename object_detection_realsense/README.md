@@ -33,7 +33,6 @@ self.numberOfRenders = {NUMBER_OF_TRAINING_IMAGES}
 -  When the model is not correctly in view of or always to close or to far away from the camera then the following parameters need to be adjusted. This can require some experimenting with the "--test" option of the blender tool which is shown below. These parameters are:
 
       - To adjust the range of distances that the camera can be located away from the robot:
-      <br/>
       ```
       self.cam_rmin
       self.cam_rmax
@@ -94,9 +93,6 @@ Then install the remaining libraries with:
 <br/><br/>
 ```
 pip install -r requirements/build.txt
-```
-<br/>
-```
 pip install -v -e .
 ```
 <br/><br/>
@@ -109,19 +105,19 @@ The following instructions are given based on the files "./mmdetection/configs/y
 ### YOLO
 
  - To indicate the location of the respective sets file locations modify the following lines:
-   - For the training dataset in lines 101 & 102:<br/><br/>
+   - For the training dataset in lines 101 & 102:<br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
     <br/>
-   - For the validation dataset in lines 107 & 108:<br/><br/>
+   - For the validation dataset in lines 107 & 108:<br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
     <br/>
-   - For the test dataset in lines 113 & 114:<br/><br/>
+   - For the test dataset in lines 113 & 114:<br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
@@ -130,21 +126,20 @@ The following instructions are given based on the files "./mmdetection/configs/y
  - To set the number of epochs for which the training process should run edit the max_epochs parameter in line 127
 ### FasterRCNN
 
-ros
  - To indicate the location of the respective sets file locations modify the following lines:
-   - For the training dataset in lines 19 & 21:<br/><br/>
+   - For the training dataset in lines 19 & 21:<br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
     ```
     <br/>
-   - For the validation dataset in lines 23 & 25:<br/><br/>
+   - For the validation dataset in lines 23 & 25:<br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
     ```
     <br/>
-   - For the test dataset in lines 27 & 29:<br/><br/>
+   - For the test dataset in lines 27 & 29:<br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
@@ -202,7 +197,7 @@ The following changes have to be performed before building the docker container:
  - In the file mmdetection_ros_node.py change line 52 and 53 to the correct names of the aforementioned model files.
 
  - In the file start_ros_node.sh replace lines 1-4 according to the following:
- <br/><br/>
+ <br/>
  ```
  source /opt/ros/{LOCAL_ROS_VERSION}/setup.bash
  export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
@@ -212,7 +207,7 @@ The following changes have to be performed before building the docker container:
  <br/>
 
 - The docker container can then be build with the following command:
-<br/><br/>
+<br/>
 ```
 sudo docker build -t ros-perception:latest .
 ```
@@ -221,9 +216,7 @@ sudo docker build -t ros-perception:latest .
 ## Running the program
 To allow the different ROS nodes in this setup to communicate with each other it is important to either turn off the firewall on all participating systems or to configure specific exceptions for these programs and the respective ports beforehand.
 ### (Optional) Start roscore:
-If the roscore should not run on the same system which extracts the camera frames start a roscore in an empty command line window on the intended host machine with the following. Otherwise the realsense2_camera launch file will automatically serve as a roscore.
-<br/>
-<br/>
+If the roscore should not run on the same system which extracts the camera frames start a roscore in an empty command line window on the intended host machine with the following. Otherwise the realsense2_camera launch file will automatically serve as a roscore.<br/>
 ```
 source /opt/ros/{local_ros_version}/setup.bash
 export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
@@ -238,17 +231,12 @@ roscore
 
 ### Start realsense-ros:
 
-To run the roslaunch program that provides the cameras output images over ROS execute the following code on the host machine to which the Intel Realsense Depth camera will be connected:
-<br/>
-<br/>
+To run the roslaunch program that provides the cameras output images over ROS execute the following code on the host machine to which the Intel Realsense Depth camera will be connected:<br/>
 ```
 source /opt/ros/{local_ros_version}/setup.bash
 export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
 export ROS_IP={ROSCORE_IP_ADDRESS}
 export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
-```
-<br/>
-```
 roslaunch realsense2_camera rs_camera.launch ~intial-reset:=true
 ```
 <br/>
