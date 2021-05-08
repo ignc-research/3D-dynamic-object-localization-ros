@@ -10,12 +10,12 @@ Since the size of the weight files for the different models exceed GitHub's limi
 The files have to be downloaded and moved to their original folders. 
 The Drive folder contains:
 * **\MMDetection**
-  * \models:
-  * \training_data:
+  * \models: Contains the .pth weight files for MMDetection models as well as their respective configuration files
+  * \training_data: Contains training datasets to train MMDetection networks and respective annotation.json files
 * **\original_videos**: Contains the videos of the robots that were used for 3D model generation.
 * **\SSPE**
-  * \training_data:
-  * \models: 
+  * \training_data: Contains training datasets to train SSPE networks and the respective label files
+  * \models: Contains .weight SSPE model files. The respective config file is provided within the SSPE folder of this repository
 * **\Zed2_model_weights**: Contains YOLO weight files. The contents have to be moved to */zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/*
 
 ## Overview
