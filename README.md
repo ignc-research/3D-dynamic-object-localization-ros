@@ -20,7 +20,7 @@ The Drive folder contains:
 
 ## Overview
 
-This is a short overview of the directories and contents included in this project. More detailed information about the contents and their usage are given in the specific subdirectories.
+This is a short overview of the directories and contents included in this project. More information about the contents and a detailed description on how to setup and utilize the respective components is given in the specific subdirectories.
 
 ### 3d_models
 
@@ -32,7 +32,7 @@ Contains all necessary files and data for training a 6D Pose Estimation SSPE.
 
 ### object_detection_realsense
 
-An object detection system developed to be used together with the Intel Realsense D435i stereo camera in ROS.
+An object detection system developed to be used together with the Intel Realsense D435i stereo camera in ROS. Also contains a full pipeline from the generation of training images to the deployment of a model within a ROS environment.
 
 ### zed2-perception
 
