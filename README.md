@@ -16,7 +16,7 @@ The Drive folder contains:
 * \SSPE
   * \training_data:
   * \models: 
-* \Zed2_model_weights: Contains YOLO weight. The contents have to be moved to /zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/
+* \Zed2_model_weights: Contains YOLO weight files. The contents have to be moved to /zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/
 
 ## Overview
 
