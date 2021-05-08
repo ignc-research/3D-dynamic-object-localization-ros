@@ -6,7 +6,7 @@ All the modules, implementations and resulting products of this project are incl
 
 ## Weight files
 
-Since the size of the training data as well as the weight files for the different models exceed GitHub's limits, they are stored on Google Drive and can be accessed via this link: https://drive.google.com/drive/folders/1tYig62OAzJDJrKIc3dWvHv2Ggf9e-bMg?usp=sharing
+Since the size of the training data as well as the weight files for the different models exceed GitHub's limits, they are stored on Google Drive and can be accessed via this link: https://drive.google.com/drive/folders/1tYig62OAzJDJrKIc3dWvHv2Ggf9e-bMg?usp=sharing\
 The files have to be downloaded and moved to their original folders. 
 The Drive folder contains:
 * **\MMDetection**
