@@ -143,25 +143,21 @@ The following instructions are given based on the files "./mmdetection/configs/y
 ## Running the program
 ### Training a model
 Once all configuration files are configured accordingly the training can be started by running:
-<br/><br/>
 ```
 python ./mmdetection/tools/train.py ./mmdetection/configs/{MODEL_TYPE}/{MODEL_SPECIFICATION}_{ROBOT_NAME}.py
 ```
-<br/>
+
 So for example for a YOLO network this would be achieved with:
-<br/><br/>
 ```
 python ./mmdetection/tools/train.py ./mmdetection/configs/yolo/yolov3_d53_mstrain-608_273e_coco_{ROBOT_NAME}.py
 ```
-<br/>
+
 
 ### Evaluating a model
 This compares the predictions against the ground truth values in the test dataset and calculates a set of metrics to measure its performance:
-<br/><br/>
 ```
 python ./mmdetection/tools/test.py ./mmdetection/configs/yolo/yolov3_d53_mstrain-608_273e_coco_{ROBOT_NAME}.py  ./work_dirs/yolov3_d53_mstrain-608_273e_coco_{ROBOT_NAME}/latest.pth --eval bbox
 ```
-<br/>
 
 ## Common problems
  - If the training process interrupts with an out-of-memory exception for the GPU memory a common fix is to reduce the settings for the workers_per_gpu and samples_per_gpu parameters in line 96-97 of the configuration file.
@@ -177,11 +173,9 @@ As the tool is packaged within a GPU-accelerated docker container it is required
 To run the roscore or the realsense-ros node which reads and sends the Intel Realsense depth cameras images, a full ROS installation on the respective systems is required. Instructions for this can be found here: http://wiki.ros.org/ROS/Installation<br/>
 The realsense-ros integration presents a framework to interface realsense cameras with ROS. In this project we utilized this tool to publish the color and depth images acquired by the Intel Realsense depth camera over the network to be analyzed by the detection node. It is available under: https://github.com/IntelRealSense/realsense-ros <br/>
 The tool can be installed using the following command on a system with a working ROS installation:
-<br/><br/>
 ```
 sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 ```
-<br/>
 
 ## Configuring Setup
 The following changes have to be performed before building the docker container:
@@ -191,21 +185,17 @@ The following changes have to be performed before building the docker container:
  - In the file mmdetection_ros_node.py change line 52 and 53 to the correct names of the aforementioned model files.
 
  - In the file start_ros_node.sh replace lines 1-4 according to the following:
- <br/>
  ```
  source /opt/ros/{LOCAL_ROS_VERSION}/setup.bash
  export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
  export ROS_IP={ROSCORE_IP_ADDRESS}
  export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
  ```
- <br/>
 
 - The docker container can then be build with the following command:
-<br/>
 ```
 sudo docker build -t ros-perception:latest .
 ```
-<br/>
 
 ## Running the program
 To allow the different ROS nodes in this setup to communicate with each other it is important to either turn off the firewall on all participating systems or to configure specific exceptions for these programs and the respective ports beforehand.
