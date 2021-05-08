@@ -1,69 +1,41 @@
-# How to run
-### Case 1: Training by Linh's data set only
+#SSPE Model
+This folder contains all code files utilized to train the SSPE component of this project. It is a clone of the IGNC SSPE implementation and therefore this README is partly taken from the original README of that repository. As the training process of this network takes place within a docker container it is required to install docker beforehand.
+Also the training data and/or model weights we produced in our project can be found in shared google folder provided in the general README of this project. The training data should be placed in the new_DB folder and the models should be placed in the backup folder before building the docker container. When a model has been trained within a docker container the resulting weights file needs to be copied out of the docker container into the regular file structure.
 
-Step 1: Clone this repo into your laptop/PC
-
-Step 2: `cd Industrial6DPoseEstimation`
-
-Step 3: Download dataset from link (https://files.slack.com/files-pri/TEL7B5P29-F01D610RAH3/download/doube-augmented.zip) and put inside this repo with all images inside JPEGImages and all labels inside labels folder
-
-Step 4: Download pre-trained model weights and put inside `backup` folder
-
-Step 5: Build and run docker as below
-
-`sudo docker build --network=host -t sspe .`
-
-`sudo docker run --gpus all -it --rm --network=host sspe`
-
-Step 6: Run `python/python3 train.py 3dbox.data yolo-pose.cfg backup/init.weights`
+## How to run
+### Training a new model
 
 
-### Case 2: Training by combined dataset
+Step 1: `cd Industrial6DPoseEstimation-SSPE`
 
-Step 1: Clone this repo into your laptop/PC
+Step 2: Download dataset from link provided in general README of this project and put the required training data folder into the new_DB folder
 
-Step 2: `cd Industrial6DPoseEstimation`
+Step 3: Download pre-trained model weights and put inside `backup` folder
 
-Step 3: Download dataset from link (https://chairignc.slack.com/files/UEKS45J0L/F01DBB7QX3P/new-combined-data.zip) and put inside this repo with all images inside JPEGImages and all labels inside labels folder
-
-Step 4: Download pre-trained model weights and put inside `backup` folder
-
-Step 5: Build and run docker as below
+Step 4: Build and run docker as below
 
 `sudo docker build --network=host -t sspe .`
 
 `sudo docker run --gpus all -it --rm --network=host sspe`
 
-Step 6: Run `python/python3 combined_train.py combined_3dbox.data yolo-pose.cfg backup/init.weights`
+Step 5: Run `python3 blender_train.py mixed_pepper.data yolo-pose.cfg backup/init.weights`
 
-### Case 3: Testing model by a single image
+
+### Testing model by a single image
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_image"`
 
 Example: `python draw_image.py --p model.weights --i input_image.png`
 
-### Case 4: Testing model by a video
+### Testing model by a video
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_video"`
 
 Example: `python draw_video.py --p model.weights --i input_video.mp4 `
 
-### Case 5: Training by Blender's dataset
+### Testing model in jupyter notebook
 
-Step 1: Clone this repo into your laptop/PC
+This jupyter notebook is taken from the original SSPE implementation by Tekin et al.
+It can be used to load a model file and test its performance on its defined test set by changing the variables datacfg, cfgfile, weightfile to point to your respective file locations.
 
-Step 2: `cd Industrial6DPoseEstimation`
-
-Step 3: Download dataset from link (https://drive.google.com/file/d/1F_bZR9kxy7iDm1Cvg54xvJ-YIPL8MIbB/view?usp=sharing) and put inside this repo with all images inside JPEGImages and all labels inside labels folder
-
-Step 4: Download pre-trained model weights and put inside `backup` folder
-
-Step 5: Build and run docker as below
-
-`sudo docker build --network=host -t sspe .`
-
-`sudo docker run --gpus all -it --rm --network=host sspe`
-
-Step 6: Run `python/python3 blender_train.py blender_3dbox.data yolo-pose.cfg backup/init.weights`
-
-
+`jupyter notebook valid.ipynb `
