@@ -6,8 +6,17 @@ All the modules, implementations and resulting products of this project are incl
 
 ## Weight files
 
-Since the size of the weight files for the different models exceed GitHub's limits, they are stored on Google Drive and can be accessed via this link:
+Since the size of the weight files for the different models exceed GitHub's limits, they are stored on Google Drive and can be accessed via this link: https://drive.google.com/drive/folders/1tYig62OAzJDJrKIc3dWvHv2Ggf9e-bMg?usp=sharing
 The files have to be downloaded and moved to their original folders. 
+The Drive folder contains:
+* \MMDetection
+  * \models:
+  * \training_data:
+* \original_videos: Contains the videos of the robots that were used 3D model generation.
+* \SSPE
+  * \training_data:
+  * \models: 
+* \Zed2_model_weights: Contains YOLO weight. The contents have to be moved to /zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/
 
 ## Overview
 
