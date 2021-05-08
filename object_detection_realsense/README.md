@@ -105,46 +105,40 @@ The following instructions are given based on the files "./mmdetection/configs/y
 ### YOLO
 
  - To indicate the location of the respective sets file locations modify the following lines:
-   - For the training dataset in lines 101 & 102:<br/>
+   - For the training dataset in lines 101 & 102:
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
-    <br/>
-   - For the validation dataset in lines 107 & 108:<br/>
+   - For the validation dataset in lines 107 & 108:
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
-    <br/>
-   - For the test dataset in lines 113 & 114:<br/>
+   - For the test dataset in lines 113 & 114:
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
-    <br/>
  - To set the number of epochs for which the training process should run edit the max_epochs parameter in line 127
 ### FasterRCNN
 
  - To indicate the location of the respective sets file locations modify the following lines:
-   - For the training dataset in lines 19 & 21:<br/>
+   - For the training dataset in lines 19 & 21:
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
     ```
-    <br/>
-   - For the validation dataset in lines 23 & 25:<br/>
+   - For the validation dataset in lines 23 & 25:
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
     ```
-    <br/>
-   - For the test dataset in lines 27 & 29:<br/>
+   - For the test dataset in lines 27 & 29:
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
     ```
-    <br/>
 
 ## Running the program
 ### Training a model
@@ -222,9 +216,6 @@ source /opt/ros/{local_ros_version}/setup.bash
 export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
 export ROS_IP={ROSCORE_IP_ADDRESS}
 export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
-```
-<br/>
-```
 roscore
 ```
 <br/>
