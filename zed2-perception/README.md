@@ -1,4 +1,4 @@
-# ZED2 Set-up
+# ZED 2 Set-up
 
 This is a guide of how to set up detection with the Stereolabs ZED2 camera and the Nvidia Jetson.
 
@@ -14,7 +14,7 @@ Following hardware is needed:
 
 darknet_ros is a ROS package developed for object detection. It offers a YOLOv3 implementation that can detect and classify objects in a video stream. YOLO is pre-trained, but can also be trained on a custom data set.
 
-### zed-wrapper
+### zed-ros-wrapper
 zed-ros-wrapper is a ROS package from Stereolabs that allows to use the ZED2 camera in ROS. It gives access to many camera information such as the images, the calibration and the depth.
 
 ### depth_yolo
@@ -29,7 +29,7 @@ depth_yolo is a ROS package developed to compute the 3D coordinates of an object
 ## Integrate Camera in ROS
 
 1. Install ROS Melodic and build catkin workspace: http://wiki.ros.org/melodic/Installation/Source
-2. Copy the folders in this folder (\zed2) to your catkin \src
+2. Copy the subfolder of this folder to your catkin \src
 3. Navigate to your catkin workspace and run:
 ```
 $ rosdep install --from-paths src --ignore-src -r -y
@@ -42,10 +42,11 @@ $ source ./devel/setup.bash
 
 ## Prepare YOLO
 
-This project used a YOLO implementation from https://github.com/leggedrobotics/darknet_ros. You can either use the version already included in this directory or clone the repo from git. Both methods are described in the next two sections.
-### Use Implementation in \src
+This project used a YOLO implementation from https://github.com/leggedrobotics/darknet_ros. You can either use the version already included in this directory (darknet_ros) or clone the repo from git. Both methods are described in the next two sections.
+### Use our Implementation
 * This project includes the following darknet_ros implementation: https://github.com/leggedrobotics/darknet_ros
-* The repo was already cloned and is located in the \src folder
+* The repo was already cloned and is located in the \darknet_ros folder
+* Follow the instructions in the main repository to copy the weight from Google drive to */zed2-perception/darknet_ros/darknet_ros/yolo_network_config/weights/*
 * There are some potential problems with OpenCV, Jetson and YOLO. Most of them are discussed here: https://github.com/leggedrobotics/darknet_ros/issues
   * In this project OpenCV 3.4.8 was used. You can download it here: https://opencv.org/releases/page/2/
     * This does not mean that other versions don't work. However, there may different issues to resolve
