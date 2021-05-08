@@ -1,4 +1,4 @@
-# ZED2 Set-up
+# ZED 2 Set-up
 
 This is a guide of how to set up detection with the Stereolabs ZED2 camera and the Nvidia Jetson.
 
