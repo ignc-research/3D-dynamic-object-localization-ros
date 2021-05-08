@@ -42,21 +42,11 @@ self.numberOfRenders = {NUMBER_OF_TRAINING_IMAGES}
       self.cam_rmax
       ```
 
-      - To adjust the range of viewing angles from which the camera can view the robot:
-      <br/>
+      - To adjust the range of viewing angles from which the camera can view the robot:<br/>
       ```
       self.cam_incmin
-      ```
-      <br/>
-      ```
       self.cam_incmax
-      ```
-      <br/>
-      ```
       self.cam_azimin
-      ```
-      <br/>
-      ```
       self.cam_azimax
       ```
       <br/>
