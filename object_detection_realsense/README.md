@@ -36,9 +36,6 @@ self.numberOfRenders = {NUMBER_OF_TRAINING_IMAGES}
       <br/>
       ```
       self.cam_rmin
-      ```
-      <br/>
-      ```
       self.cam_rmax
       ```
 
@@ -115,27 +112,18 @@ The following instructions are given based on the files "./mmdetection/configs/y
    - For the training dataset in lines 101 & 102:<br/><br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
-    ```
-    <br/>
-    ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
     <br/>
    - For the validation dataset in lines 107 & 108:<br/><br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
-    ```
-    <br/>
-    ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
     <br/>
    - For the test dataset in lines 113 & 114:<br/><br/>
     ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
-    ```
-    <br/>
-    ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
     ```
     <br/>
@@ -147,27 +135,18 @@ ros
    - For the training dataset in lines 19 & 21:<br/><br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
-    ```
-    <br/>
-    ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/train.json'
     ```
     <br/>
    - For the validation dataset in lines 23 & 25:<br/><br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
-    ```
-    <br/>
-    ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/val.json'
     ```
     <br/>
    - For the test dataset in lines 27 & 29:<br/><br/>
     ```
     img_prefix='{PATH_TO_TRAINING_DATA_FOLDER}/'
-    ```
-    <br/>
-    ```
     ann_file='{PATH_TO_TRAINING_DATA_FOLDER}/test.json'
     ```
     <br/>
@@ -226,17 +205,8 @@ The following changes have to be performed before building the docker container:
  <br/><br/>
  ```
  source /opt/ros/{LOCAL_ROS_VERSION}/setup.bash
- ```
- <br/>
- ```
  export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
- ```
- <br/>
- ```
  export ROS_IP={ROSCORE_IP_ADDRESS}
- ```
- <br/>
- ```
  export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
  ```
  <br/>
@@ -256,17 +226,8 @@ If the roscore should not run on the same system which extracts the camera frame
 <br/>
 ```
 source /opt/ros/{local_ros_version}/setup.bash
-```
-<br/>
-```
 export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
-```
-<br/>
-```
 export ROS_IP={ROSCORE_IP_ADDRESS}
-```
-<br/>
-```
 export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
 ```
 <br/>
@@ -282,17 +243,8 @@ To run the roslaunch program that provides the cameras output images over ROS ex
 <br/>
 ```
 source /opt/ros/{local_ros_version}/setup.bash
-```
-<br/>
-```
 export ROS_MASTER_URI=http://{ROSCORE_IP_ADDRESS}:11311
-```
-<br/>
-```
 export ROS_IP={ROSCORE_IP_ADDRESS}
-```
-<br/>
-```
 export ROS_HOSTNAME={ROSCORE_IP_ADDRESS}
 ```
 <br/>
