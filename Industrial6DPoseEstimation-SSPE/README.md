@@ -1,6 +1,7 @@
 # SSPE Model
-This folder contains all code files utilized to train the SSPE component of this project. It is a clone of the IGNC SSPE implementation and therefore this README is partly taken from the original README of that repository. As the training process of this network takes place within a docker container it is required to install docker beforehand.</br>
-Also the training data and/or model weights we produced in our project can be found in shared google folder provided in the general README of this project. The training data should be placed in the new_DB folder and the models should be placed in the backup folder before building the docker container. When a model has been trained within a docker container the resulting weights file needs to be copied out of the docker container into the regular file structure.
+This folder contains all code files utilized to train the SSPE component of this project. It is a clone of the IGNC SSPE implementation and therefore this README is partly taken from the original README of that repository. This component is mainly submitted for completeness and is not integrated into a ROS node like the other two components. </br>
+Also the training data and/or model weights we produced in our project can be found in shared google folder provided in the general README of this project. The training data should be placed in the new_DB folder and the models should be placed in the backup folder before building the docker container. When a model has been trained within a docker container the resulting weights file needs to be copied out of the docker container into the regular file structure.</br>
+As the training process of this network takes place within a docker container it is required to install docker beforehand.
 
 ## How to run
 ### Training a new model
