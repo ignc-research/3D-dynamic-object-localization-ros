@@ -21,13 +21,13 @@ Step 4: Build and run docker as below
 Step 5: Run `python3 blender_train.py mixed_pepper.data yolo-pose.cfg backup/init.weights`
 
 
-### Testing model by a single image
+### Testing model with a single image
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_image"`
 
 Example: `python draw_image.py --p model.weights --i input_image.png`
 
-### Testing model by a video
+### Testing model with a video
 
 `python draw_image.py --p "path_to_weight_file" --i "path_to_input_video"`
 
@@ -35,7 +35,7 @@ Example: `python draw_video.py --p model.weights --i input_video.mp4 `
 
 ### Testing model in jupyter notebook
 
-This jupyter notebook is taken from the original SSPE implementation by Tekin et al.
+This jupyter notebook is taken from the original SSPE implementation by [Tekin et al](https://arxiv.org/abs/1711.08848) and can be found here: https://github.com/microsoft/singleshotpose.
 It can be used to load a model file and test its performance on its defined test set by changing the variables datacfg, cfgfile, weightfile to point to your respective file locations.
 
 `jupyter notebook valid.ipynb `
