@@ -1,7 +1,4 @@
-# ros-tracking-robot-human-3d
-
-## TODOS: 
-	□ explain parameters in docker run and build instructions 
+# ros-tracking-robot-human-3d 
 
 ## Building your own image: 
 
