@@ -1,6 +1,0 @@
-train  = pepper_robot_commercial_train_full.txt
-valid  = pepper_robot_commercial_test_full.txt
-backup = backup
-mesh = pepper_robot_commercial.ply
-diam = 0.6
-name = pepper_commercial
