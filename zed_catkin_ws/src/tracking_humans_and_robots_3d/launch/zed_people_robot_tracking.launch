@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+      <arg name= "rviz_visualization"                          value ="1" />
+      
+      <!-- Robot tracking parameters -->
+      <arg name = "robot_tracking"                             value ="1" />
+      
+      <!-- Human tracking parameters -->
+      <arg name = "human_tracking"               value = "1" />
+      <arg name = "visualization_human_tracking" value = "true" doc="start Rviz with predefined configuration?"/>
+
+      
+      <!-- Launch zed 2 and human tracking-->
+      <!-- TODO: seperate camera launch process from human tracking service -->
+      <group if = "$(eval arg('human_tracking') == 1)">
+            <include file = "$(find zed_wrapper)/launch/zed2.launch"/>
+      </group>
+  
+      <!-- Launch robot tracking-->
+      <group if = "$(eval arg('robot_tracking') == 1)">
+            <include file = "$(find mmdetection_ros)/launch/mmdetector.launch">
+                  <arg name = "robot_tracking_visualization_2d"            value = "false" />
+                  <arg name = "robot_tracking_visualization_3d"            value = "true" />
+            </include>
+      </group>
+
+      <!-- RViz visualization -->
+      <group if = "$(eval arg('rviz_visualization') == 1)">
+            <node name = "tracking_visualization_rviz" pkg="rviz" type="rviz" args="-d $(find tracking_humans_and_robots_3d)/rviz/hichem_rviz_config.rviz" if="$(arg rviz_visualization)"/>
+      </group>
+
+</launch>
