@@ -56,3 +56,4 @@ from the ros-tracking-robot-human-3d directory you can run this command: nano ro
 # and then run:
 
 	export DISPLAY=:"display_number"
+	
