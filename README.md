@@ -1,5 +1,7 @@
 # ros-tracking-robot-human-3d 
 
+This repo contains the docker container deployment for detection and localizing humand and robots in 3D. 
+To install the software, clone the repository and follow the below instructions: 
 ## Building your own image: 
 
 ## to build your docker image: 
@@ -43,14 +45,14 @@ To disable/enable the human tracking service provided by the ZED2, you have to o
 from the ros-tracking-robot-human-3d directory you can run this command: nano ros-tracking-robot-human-3d/zed_catkin_ws/src/zed-ros-wrapper/zed_wrapper/launch/zed2.launch
 
 ## Common issues: 
-- X11 screen error: run this command to disable the display control management 
+## X11 screen error: run this command to disable the display control management:
 	
-	sudo xhot +local:root
+	sudo xhost +local:root
 
-- In case rviz can't access display then please check the assigned display number with the help of the following command 
+# In case rviz can't access display then please check the assigned display number with the help of the following command: 
 	
 	xauth info 
 
-and then run 
+# and then run:
 
 	export DISPLAY=:"display_number"
