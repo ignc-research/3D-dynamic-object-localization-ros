@@ -8,11 +8,8 @@
       
       <!-- Human tracking parameters -->
       <arg name = "human_tracking"               value = "1" />
-      <arg name = "visualization_human_tracking" value = "true" doc="start Rviz with predefined configuration?"/>
-
       
       <!-- Launch zed 2 and human tracking-->
-      <!-- TODO: seperate camera launch process from human tracking service -->
       <group if = "$(eval arg('human_tracking') == 1)">
             <include file = "$(find zed_wrapper)/launch/zed2.launch"/>
       </group>

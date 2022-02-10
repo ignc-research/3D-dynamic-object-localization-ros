@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- refactor: maybe not needed --> 
   <arg name= "image_topic" default="/camera/color/image_raw" />
   
   <arg name= "robot_tracking_visualization_2d" default="true"/>
