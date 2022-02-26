@@ -57,7 +57,7 @@ def convert_depth_pixel_to_metric_coordinate(depth, pixel_x, pixel_y, camera_int
 
 def delete_markers():
     marker = Marker()
-    marker.header.frame_id = "/base_link"
+    marker.header.frame_id = "base_link"
     marker.action = Marker.DELETEALL
     marker.id = DELETEALL_MARKER_ID
     return marker
@@ -70,7 +70,7 @@ def extract_detection_results(subResult, det2dobj):
     objHypothesis = ObjectHypothesisWithPose()
     objHypothesis.score = subResult[4]
     det2dobj.results.append(objHypothesis)
-    return det2dobj, det2dobj.results[0].score
+    return det2dobj, det2dobj.objHypothesis.score
 
 def make_marker(class_counter, robot_counter, marker_location, colors):
     marker = Marker()
@@ -79,7 +79,7 @@ def make_marker(class_counter, robot_counter, marker_location, colors):
     marker.action = Marker.ADD
     marker.scale.x = SCALE / 2
     marker.scale.y = SCALE / 2
-    marker.scale.z = SCALE * 2
+    marker.scale.z = SCALE
     marker.header.stamp  = rospy.get_rostime()
     marker.id = class_counter + robot_counter
     marker.pose.position.y, marker.pose.position.z, marker.pose.position.x = marker_location
@@ -143,23 +143,23 @@ class Detector:
             for sub_counter, subResult in enumerate(detectedRobots):
                 if subResult.shape != (0, 5):
                     det_2d_result, score = extract_detection_results(subResult, det2dobj)
-                    rospy.logdebug("score for %s  | nr: %s | score: %s", self.robot_dict[counter] ,sub_counter, score)
+                    #rospy.logdebug("score for %s  | nr: %s | score: %s", self.robot_dict[counter] ,sub_counter, score)
 
                     if score > self.score_thr:
                         if self.visualization_2d is True:
                             start_point = (int(det_2d_result.bbox.center.x - det_2d_result.bbox.size_x/2) ,int(det_2d_result.bbox.center.y-det_2d_result.bbox.size_y/2))
                             end_point = (int(det_2d_result.bbox.center.x + det_2d_result.bbox.size_x/2) , int(det_2d_result.bbox.center.y+det_2d_result.bbox.size_y/2))
                             cv_img = cv2.rectangle(image_np, start_point, end_point, self.colors_dict_2d[counter], 3)
-                            rospy.logdebug("2D bbox for %s | nr: %s | score: %s", self.robot_dict[counter] ,sub_counter, score)
+                            #rospy.logdebug("2D bbox for %s | nr: %s | score: %s", self.robot_dict[counter] ,sub_counter, score)
                             cv_img = self.bridge.cv2_to_compressed_imgmsg(cv_img)
                             self.image_pub.publish(cv_img)
 
                         if self.visualization_3d is True:
                             self.depth_value = dImage[int(det_2d_result.bbox.center.y), int(det_2d_result.bbox.center.x)]
-                            rospy.logdebug("3D bbox for %s | nr: %s score: %s | depth: %s ", self.robot_dict[counter] ,sub_counter, score, self.depth_value)
+                            #rospy.logdebug("3D bbox for %s | nr: %s score: %s | depth: %s ", self.robot_dict[counter] ,sub_counter, score, self.depth_value)
                             marker_location = convert_depth_pixel_to_metric_coordinate(self.depth_value, det_2d_result.bbox.center.x, det_2d_result.bbox.center.y, self.camera_intrinsics)
                             marker = make_marker(counter, sub_counter, marker_location, self.colors_dict_3d[counter])
-                            rospy.logdebug(" -- Appending new marker to markerarray -- %s %s %s", marker.pose.position.y , marker.pose.position.z , marker.pose.position.x )
+                            #rospy.logdebug(" -- Appending new marker to markerarray -- %s %s %s", marker.pose.position.y , marker.pose.position.z , marker.pose.position.x )
                             self.marker_array_msg.markers.append(marker)
 
         self.marker_array_pub.publish(self.marker_array_msg.markers)
@@ -169,7 +169,7 @@ def main():
     rospy.init_node('mmdetector', log_level=rospy.DEBUG)
     model = init_detector(CONFIG_PATH, MODEL_PATH, device='cuda:0')
     detector = Detector(model)
-    ts = message_filters.ApproximateTimeSynchronizer([detector.image_sub, detector.depth_sub], queue_size=10, slop=0.5, allow_headerless=True)
+    ts = message_filters.ApproximateTimeSynchronizer([detector.image_sub, detector.depth_sub], queue_size=3, slop=0.5, allow_headerless=True)
     ts.registerCallback(detector.callback)
     rospy.spin()
 

@@ -1,59 +1,71 @@
 # ros-tracking-robot-human-3d 
 
-This repo contains the docker container deployment for detection and localizing humand and robots in 3D. 
-To install the software, clone the repository and follow the below instructions: 
+This repo contains the workspace to run the docker container deployment for detecting robots in 
+2D using the YOLO v3 algorithm. 
+he 2D detection results are processed with the depth data to localize the robots in 3D.
+The human detection and tracking in 3D is produced by the pre-implemented human tracking service 
+of the ZED2 camera.  
+
+To run the ROS dynamic object localization softwarre, clone the repository and follow the below instructions: 
+
+## Trained model weights: 
+Download the trained model weights stored in the following tubit cloud link: https://tubcloud.tu-berlin.de/s/wTFCLeg6P9dFXKq
+
+## MMCV wheel (built from source): 
+Download the python wheel file from the following tubit cloud link: https://tubcloud.tu-berlin.de/s/GAdrobXJ6zJ93Hx
+
+## PYTORCH wheel (built from source):
+Download the python wheel file from the following tubit cloud link: https://tubcloud.tu-berlin.de/s/9TcyHfii3JWt3q4
+
+## Execution and Configuration
+During the first execution with the human tracking service enabled, the ZED SDK downloads an AI model 
+for the ZED 2 camera and configures it at runtime. 
+The ROS workspace is structured withing the following roslaunch file: 
+tracking_humans_and_robots_3d/launch/zed_people_robot_tracking.launch
+to enable/disable the 2D and 3D visualizations in RVIZ, start the ZED2 camera, start the 
+detector node use this command: 
+nano zed_catkin_ws/src/tracking_humans_and_robots_3d/launch/zed_people_robot_tracking.launch
+
+## Disable/Enable Human Tracking 
+
+You can disable the robot tracking in the zed_people_robot_tracking launch file. 
+
+You can also disable the ros visualisation by changing the corresponding parameter in the same launch file. 
+To disable/enable the human tracking service provided by the ZED2, you have to open the file located in 
+"ros-tracking-robot-human-3d/zed_catkin_ws/src/zed-ros-wrapper/zed_wrapper/launch/zed2.launch" and 
+change the obj_hum_det parameter to true/false. 
+
+
+## Human detection and tracking performance
+from the ros-tracking-robot-human-3d directory you can run this command: nano ros-tracking-robot-human-3d/zed_catkin_ws/src/zed-ros-wrapper/zed_wrapper/params/zed2.yaml to manipulate the human tracking and detection performances.
+These list of models are available to choose from: 
+- 0 : MULTI_CLASS_BOX 
+- 1 : MULTI_CLASS_BOX_ACCURATE 
+- 2 : HUMAN_BODY_FAST
+- 3 : HUMAN_BODY_ACCURATE
 ## Building your own image: 
 
 ## to build your docker image: 
 
-	sudo docker build -t hichdh/ws-thesis-final:1.0.0 .
-	
+	sudo docker build -t custom-image:1.0.0 .
 ### to run your docker container:
 
-	sudo docker run -it --runtime nvidia --gpus all --net=host --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp.X11-unix:rw hichdh/ws-thesis-final:1.0.0 /bin/bash
+	sudo docker run -it --runtime nvidia --gpus all --net=host --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp.X11-unix:rw custom-image:1.0.0 /bin/bash
 
 ### to delete all docker related files: 
 
 	sudo docker system prune --all --volumes --force
-
-## Downloading the image from docker hub  
-
-	sudo docker pull hichdh/ws-thesis-final:1.0.0
 	
 ## To start tracking robots and humans run this command inside the container    
 	
 	roslaunch tracking_humans_and_robots_3d zed_people_robot_tracking.launch 
 
-## First execution: 
-
-An AI model for the ZED 2 camera needs to be downloaded first. You can disable the robot tracking in the zed_people_robot_tracking launch file. 
-
-Use this command to enable/disable robot tracking: 
-nano tracking_humans_and_robots_3d/launch/zed_people_robot_tracking.launch
-
-You can also disable the ros visualisation by changing the corresponding parameter in the same launch file. 
-
-
-## Second execution: 
-
-After the model is downloaded the ZED2 YOLO model for human tracking is downloaded and configured for the hardware settings. 
-
-## Disable human tracking service
-
-To disable/enable the human tracking service provided by the ZED2, you have to open the file located in "ros-tracking-robot-human-3d/zed_catkin_ws/src/zed-ros-wrapper/zed_wrapper/launch/zed2.launch" and change the obj_hum_det parameter to true/false. 
-
-from the ros-tracking-robot-human-3d directory you can run this command: nano ros-tracking-robot-human-3d/zed_catkin_ws/src/zed-ros-wrapper/zed_wrapper/launch/zed2.launch to manipulate the human tracking detection parameters.
 
 ## Common issues: 
 ## X11 screen error: 
 ### run this command to disable the display control management:
-	
-	sudo xhost +local:root
-
-### In case rviz can't access display then please check the assigned display number with the help of the following command: 
-	
+	sudo xhost +
+### In case rviz can't access the display then check the assigned display number with this command: 
 	xauth info 
-
 ### and then run:
-
 	export DISPLAY=:"display_number"

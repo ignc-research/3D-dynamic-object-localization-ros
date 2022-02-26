@@ -3,11 +3,11 @@
 
   <arg name= "image_topic" default="/camera/color/image_raw" />
   
-  <arg name= "robot_tracking_visualization_2d" default="true"/>
-  <arg name= "robot_tracking_visualization_3d" default="true"/>
+  <arg name= "robot_detection_visualization_2d" default="true"/>
+  <arg name= "robot_localization_visualization_3d" default="true"/>
 
-  <param name= "visualization_2d" value="$(arg robot_tracking_visualization_2d)"/>
-  <param name= "visualization_3d" value="$(arg robot_tracking_visualization_3d)"/>
+  <param name= "visualization_2d" value="$(arg robot_detection_visualization_2d)"/>
+  <param name= "visualization_3d" value="$(arg robot_localization_visualization_3d)"/>
 
   <node pkg="mmdetection_ros" name="mmdetector" type="mmdetector.py" output="screen">
     <remap from="image" to="$(arg image_topic)"/> 
