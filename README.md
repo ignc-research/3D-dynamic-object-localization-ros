@@ -6,7 +6,7 @@ locate them in relation to a camera mounted on a robot. All the modules, impleme
 
 This repo contains the workspace to run the docker container deployment for detecting robots in 
 2D using the YOLO v3 algorithm. The 2D detection results are processed with the depth data to localize the robots in 3D.
-The human detection and tracking in 3D is produced by the pre-implemented human tracking service 
+The human detection and tracking in 3D are produced by the pre-implemented human tracking service 
 of the ZED2 camera.  
 
 To run the ROS dynamic object localization softwarre, clone the repository, download the trained model weights, the mmcv and the pytorch wheels from the following links: 
