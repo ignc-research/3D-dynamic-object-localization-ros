@@ -1,4 +1,4 @@
-# ros-tracking-robot-human-3d 
+# ROS integrated application to localize dynamic objects using deep learning approaches
 
 The objective of this bachelor thesis was to develop a real-time object detection system integrated in ROS to detect 
 and classify three different robot models, namely Pepper, TIAGo, and the KUKA youBot, and humans and 
