@@ -49,8 +49,6 @@ def timer(descrption: str) -> None:
     rospy.logdebug(f"{descrption}: {ellapsed_time}")
 
 def convert_depth_pixel_to_metric_coordinate(depth, pixel_x, pixel_y, camera_intrinsics):
-    # float x = (pixel[0] - intrin->ppx) / intrin->fx;
-    # float y = (pixel[1] - intrin->ppy) / intrin->fy;
     X = (pixel_x - camera_intrinsics[2])/camera_intrinsics[0] *depth
     Y = (pixel_y - camera_intrinsics[5])/camera_intrinsics[4] *depth
     return X, Y, depth
@@ -108,7 +106,6 @@ class Detector:
         depth_value = 0
         self.marker_count = 0 
 
-        # TODO: compare with the cupy version of frombuffer
         image_np = np.frombuffer(image.data, dtype = np.uint8).reshape(image.height, image.width, -1)
        
         image_rgba = cv2.cvtColor(image_np, cv2.COLOR_BGRA2RGBA)
@@ -178,7 +175,7 @@ class Detector:
                             scale = 1
                             
                             marker = Marker()
-                            marker.header.frame_id =  "base_link" #"rgbd_front_top_link"  
+                            marker.header.frame_id =  "base_link"   
                             marker.header.stamp    = rospy.get_rostime()
                             marker.type = marker.CUBE 
                             marker.id = self.marker_count 
@@ -195,8 +192,6 @@ class Detector:
 
                             rospy.logdebug(" -- Appending new marker to markerarray --")                        
                             self.marker_array_msg.markers.append(marker) 
-                        # else: 
-                        #     pass
 
         rospy.logdebug("pub mka")
         self.marker_array_pub.publish(self.marker_array_msg.markers)
@@ -213,37 +208,3 @@ def main(args):
     
 if __name__=='__main__':
     main(sys.argv)
-
-# TODO: replace object_count with enumarate 
-# TODO: delete local variables
-# TODO: (maybe not) subscribe to published human markers and add them to marker array for a synchronized data publication for all tracked objects (human + robots)
-        # currently human tracking is being run independently from this file
-# TODO: consider publishing the markers array, use a while not rospy.is_shutdown: 
-# TODO: extract camera infos from depth info at the beginning of callback? depends if camera intrinsics change when moving the camera ????? research needed 
-    #   _intrinsics.fx = cameraInfo.K[0]
-    #   _intrinsics.ppx = cameraInfo.K[2]
-    #   _intrinsics.ppy = cameraInfo.K[5]
-    #   _intrinsics.fy = cameraInfo.K[4]
-# TODO: could be optimized by storing the results in memory # def convert_depth_pixel_to_metric_coordinate see functools and optimization in trello notes 
-# TODO: define class for markers? create __init__ to initialize attributes and use __enter__ to check if it is a delete marker or add marker 
-# TODO: create a context manager to benchmark the function -> requires better object oriented design pattern in here 
-
-"""
-from mmcv.ops import get_compiling_cuda_version, get_compiler_version
-# Setup 
-
-import mmdet
-import mmcv
-import torch, torchvision 
-
-print("torch version: ",torch.__version__, "| torch cuda available: ",torch.cuda.is_available())
-print("mmdetection version: ",mmdet.__version__)
-print("mmcv version: ", mmcv.__version__)
-print("compiling cuda version: ", get_compiling_cuda_version())
-print("compiler version: ", get_compiler_version())
-
-# from time import ctime  
-# import time 
-"""
-
-# optimization: https://www.python.org/doc/essays/list2str/
